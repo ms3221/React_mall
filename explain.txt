@@ -1,0 +1,13 @@
+
+react app 생성 명령어 
+npx create-react-app {폴더명}
+
+npm star === yarn start 
+
+
+### react bootStrap 사용하기 위해서 명령어를 이용해서 download합시다.
+### css 해당되는 <Link>태그를 cdn으로 가져옵시다.
+npm install react-bootstrap bootstrap === yarn add react-bootstrap bootstrap
+
+
+### 쇼핑몰 layout.png파일을 참조해주세요! 
