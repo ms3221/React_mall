@@ -36,3 +36,27 @@ useHistory는 goBack() 뒤로가기 같은 기능을 한다. push("/main") push�
       </Routes>
 
     // <Routes>라는 태그안에 <Route>를 작성하면 되고 component change element(</Main>) 앞에 보이는 코드는 예시
+
+
+
+ //중요한 데이터들은 최상단위에서 관리해야지 props를 전달할시 편하다!!   
+
+
+ //css 스타일링에 관한 2가지
+ //styled-component의 관점
+ 꼰대 :그냥 css짜면 되지 무슨 이런걸한다고?
+ 초짜 : 응>?? 이렇게 편한게??
+
+ 결론 ; class겹칠일이 많이 없어서 좋기는 함 
+ 그러나 css모듈화 해놓으면 해결될 일임!! 
+
+// SASS   yarn add node-sass(명령어)
+CSS를 프로그래밍언어스럽게 작성가능한 Preprocessor
+브라우저는 SASS 문법 몰라요!!
+다시 CSS로 컴파일 해주어야 함 (node-sass 설치하면 알아서 해준다~)
+
+결론 : CSS를 작성하는 방법이 여러가지가 생겼다. 그 중에서 자기가 편한 것을 선택해서 사용하면 될것같다. 
+ syled-component의 장점은 class명이 겹칠일이 없다는 것이 장점이고 
+ SASS는 함수 및 재사용성이 좋아지기 때문에 코드길이가 짧아진다는 장점이 있다.
+ 
+

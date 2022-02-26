@@ -4,8 +4,6 @@ export default [
       title : "White and Black",
       content : "Born in France",
       price: 120000,
-      
-      
     },
   
     {

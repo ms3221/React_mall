@@ -1,14 +1,10 @@
 
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { useState } from 'react';
-import shoeses from '../data'
-const Main = () => {
-    
-
-  let [shoes, shoes변경] = useState(shoeses);
+import { Link } from 'react-router-dom';
 
 
-    
+const Main = ({ shoes }) => {
     return (
         <>
         <div className="BG">
@@ -37,14 +33,16 @@ const Main = () => {
 
 }
 function Product({ product, index }) {
-
     index = index +1;
     return (
   <>
         <div className="col-md-4" key={index}>
-          <img src={`https://codingapple1.github.io/shop/shoes${index}.jpg`} width="100%"></img>
+        <Link to={`/detail/${index-1}`}>
+            <img src={`https://codingapple1.github.io/shop/shoes${index}.jpg`} width="100%"></img>
+            </Link>
           <h4>{ product.title}</h4>
-          <h4>{product.content}&& { product.price}</h4>
+            <h4>{product.content}&& {product.price}</h4>
+           
     </div>
   </>
     )

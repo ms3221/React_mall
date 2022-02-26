@@ -1,0 +1,53 @@
+
+
+//SASS 배운것들을 확인해 보자.
+//변수를 만들어서 사용할 수가 있다.
+// 다른 SASS파일을 import해서 사용할 수가 있다.
+// nesting방법이 있다. 
+// @extend라는 방법이 있다. 
+// @mixin아라는 함수만드는 방법 
+
+@import './reset.scss';
+
+$메인칼라 : #ff0000;
+
+.red {
+  color : $메인칼라;
+}
+
+// div.container h4 {
+//     color: blue;
+// }
+// 셀렉터 대신 쓰는 nesting 방법 
+// div.container {
+//     h4{
+//         color: purple;
+//     }
+// }
+// div.container p {
+//     color: green;
+// }
+
+@mixin 함수() {
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width:100%;
+    margin: auto;
+}
+
+.my-alert {
+  @include 함수;
+}
+.my-alert p {
+    margin-bottom: 0;
+}
+
+
+.my-alert2 {
+    @extend .my-alert;
+    background: #ffe591;
+}
+
+
