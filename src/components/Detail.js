@@ -3,12 +3,15 @@
 //5버전
 //import { useHistory } from "react-router";
 //6버전
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 //navigate(-1) 뒤로가기 navigate('/detail') detail경로로 이동
 import { useParams } from "react-router";
 import styled from 'styled-components';
 import '../Detail.scss';
+import { 재고context } from "../App";
+import { Nav } from 'react-bootstrap';
+import { CSSTransition } from "react-transition-group";
 
 const 박스 = styled.div`
   padding : 20px;
@@ -39,8 +42,12 @@ function Info({재고}) {
 
 
 
-const Detail = ({ shoes,재고 }) => {
+const Detail = ({ shoes }) => {
   let [a, b] = useState(true);
+  let 재고 = useContext(재고context);
+  let [누른텝, 누른텝변경] = useState(0);
+  let [스위치, 스위치변경] = useState(false);
+  
   
   let 타이머 = useEffect(() => {
     setTimeout(() => {
@@ -78,16 +85,44 @@ const Detail = ({ shoes,재고 }) => {
           <p>{shoes[id].content}</p> 
               <p>{shoes[id].price}</p>
               
-              <Info 재고={재고[0]}>  </Info>
+              <Info 재고={재고[id]}>  </Info>
               <button className="btn btn-danger">주문하기</button>
               &nbsp;
-              <button className="btn btn-danger" onClick={ ()=> navigate(-1)}>뒤로가기</button>
+              <button className="btn btn-danger" onClick={() => navigate(-1)}>뒤로가기</button>
         </div>
           </div>
-        
+
+          <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+  <Nav.Item>
+              <Nav.Link eventKey="link-0" onClick={() => { 누른텝변경(0); 스위치변경(false)}}>Active</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+              <Nav.Link eventKey="link-1" onClick={() => { 누른텝변경(1); 스위치변경(false) }}>Option 2</Nav.Link>
+  </Nav.Item>
+          </Nav>
+          <CSSTransition in={스위치} classNames="wow-enter" timeout={500}>
+            <TabContent 누른텝={누른텝} 스위치변경={스위치변경} />
+          </CSSTransition>
 </div> 
         </>
     )
+}
+
+function TabContent({ 누른텝, 스위치변경 }) {
+  
+  //컴포넌트가 등자할 때 변경될 때 작동하게 되어있음
+  useEffect(() => {
+    스위치변경(true);
+  })
+  
+  
+  if (누른텝 === 0) {
+    return <div>0번째 내용입니다.</div>
+  } else if (누른텝 === 1) {
+    return <div>1번째 내용입니다.</div>
+  } else if (누른텝 === 2) {
+    return <div>3번째 내용입니다.</div>
+  }
 }
 
 export default Detail

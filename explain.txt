@@ -73,3 +73,71 @@ useEffect();
 1.JQuery 사용
 2. axios 사용 
 3. 쌩 자바스크립트 fetch 
+
+
+###ContenxtAPI  왜사용해야하는 것일까?? 그건바로 props지옥에서 벗어나보자...
+  -- 하위컴포넌트들이 props 없이도 부모의 값을 사용가능 
+
+
+2022-03-01(대한독립만세)
+### TAB기능을 만들어보는 작업
+react-bootStrap에 있는 base Nav를 가지고 와서 작업했으며
+componet안에서 if문을 이용해서 state값에 따라서 눌러지는 화면을 제작했다.
+그리고 이 tab기능으로인해서 div가 바뀌는 모습을 transition으로 처리해서 조금더 보기 좋게 변경해보앗다.
+여기서 사용한 추가명령어는 yarn add react-transition-group을 설치해주었고 
+detail.js에서 import { CSSTransition } from "react-transition-group" 임폴트해서 원하는 컴포넌트를 감싸주면된다.
+그리고 들어가는 인자값으로는, in,timeout, classNames가 있으며 classNames에 해당하는 css를 작성해주면 된다. detail.scss를 참고하자.
+
+
+
+### Redux를 공부해보자.
+먼저 라이브러리를 설치해 보자 yarn add redux react-redux 2가지 설치 
+why??? props 안쓰고 싶어서 사용하는 거에요! contextAPI와 똑같은 용도입니다.
+
+1.index.js를 가서  import { Provider } from 'react-redux';
+let store = createStore(() => { return [{id : 0, name : '멋진신발', quan : 2}]});
+  <Provider store={store}>
+  <App />
+  </Provider>
+
+Provider로 감싸주면 모든컴포넌트들이 같은 state를 공유할 수 있습니다. 그리고 createStore를 만들어서 같이 사용할 데이터를 일단 넣어봅시다.
+
+2.이제 store에 들어있는 데이터를 사용하는 페이지에서 작업을 해줘야합니다.
+
+unction state를props화(state) {
+    return {
+        states : state  // store데이터를 props로 등록
+    }
+}
+
+export default connect(state를props화)(Cart);
+
+이런식으로 셋팅을 해줘야하고 states는 내가 맘대로 작성할 수 있는 함수명입니다. 그리고 사용하는 컴포넌트에서는 props로 받아와서 상용해야합니다.
+
+
+### 2번째 redux를 사용하는 이유 
+데이터 관리가 용이하기 때문에 사용합니다. 
+redux에선 state데이터의 수정방법을 미리 정의해야합니다. 
+
+let store = createStore(() => {
+  return (
+    reducer
+  )
+});
+
+let 초기값 = [{ id: 0, name: '멋진신발0', quan: 2 }, { id: 1, name: '멋진신발1', quan: 20 }];
+
+function reducer(state = 초기값, 액션) {
+  
+  if () {
+    return 수정된state
+  } else {
+    return state;
+  }
+
+}
+reducer라는 것을 만들어서 이안에서 state를 변경하는 규칙을 제정할려고합니다. 
+reducer는 import해오면되고 이녀석은 무조건 state를 뱉어내야합니다. 주의!!
+그리고 ES6신문법이 있습니다. 위에보시면 기본값 파라미터라고해서 아무란 인자값이 없으면 state = 초기값 state에는 초기값을 너어주세요 이런 느?낌?
+
+그다음은 데이터를 수정하는 함수를 dispatch를 사용해서 하도록하자.

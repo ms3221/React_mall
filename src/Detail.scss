@@ -51,3 +51,19 @@ $메인칼라 : #ff0000;
 }
 
 
+
+.wow-enter{
+  //애니매이션 시작할 때 적용핧 CSS
+  //투명도가 점점점 늘어가는것 을 주기위한 
+  opacity: 0;
+  //opactiy가 0에서 1까지 서서히 변하게 해주셈!
+  transition: all 1000ms;
+}
+
+
+.wow-enter-active{
+   //애니매이션 동장학 때 적용할 CSS
+   opacity: 1;
+}
+
+

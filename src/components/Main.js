@@ -42,8 +42,7 @@ function Product({ product, index }) {
             <img src={`https://codingapple1.github.io/shop/shoes${index}.jpg`} width="100%"></img>
             </Link>
           <h4>{ product.title}</h4>
-            <h4>{product.content}&& {product.price}</h4>
-           
+            <p4>{product.content} &  {product.price}</p4>s
     </div>
   </>
     )

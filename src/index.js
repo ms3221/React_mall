@@ -4,12 +4,36 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
+
+
+let 초기값 = [{ id: 0, name: '멋진신발0', quan: 2 }, { id: 1, name: '멋진신발1', quan: 20 }];
+
+function reducer(state = 초기값, 액션) {
+  
+  if (액션.type === '수량증가') {
+    let copy = [...초기값];
+    copy[0].quan++;
+    return copy
+  } else if (액션.type === '수량감소') {
+    let copy = [...초기값];
+    copy[0].quan--;
+    return copy
+  } else {
+    return state
+  }
+
+}
+let store = createStore(reducer);
 ReactDOM.render(
   
   <React.StrictMode>
     <BrowserRouter>
+      <Provider store={store}>
       <App />
+      </Provider>
       </BrowserRouter>
   </React.StrictMode>,
     document.getElementById('root')
